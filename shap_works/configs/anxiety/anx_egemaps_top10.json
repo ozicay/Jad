@@ -1,0 +1,10 @@
+{
+    "experiment_name": "anx_egemaps_top10",
+    "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_egemaps_nong",
+    "feature_type": "egemaps",
+    "feature_column": "egemaps_features",
+    "expected_feature_count": 88,
+    "target_column": "anksiyete_skoru",
+    "top_k": 10,
+    "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/anx_egemaps_top10"
+}

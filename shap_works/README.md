@@ -59,3 +59,24 @@ locations. This layout change does not update the source checkout used by the
 12 jobs already submitted at revision `0d53a434116f0670b8415cd08eb617f53736988e`.
 Future deployments must use the runner and Python path from the same revision.
 MN5 logs and experiment outputs are not versioned.
+
+## Anxiety experiments
+
+`optuna_xgb_anxiety_configurable.py` predicts `anksiyete_skoru`. Its complete
+`run_experiment` function is identical to the depression configurable script;
+only configuration target validation differs. The parser, patient ID/grouping,
+LOPO masks, 20 Optuna trials, search space, built-in importance, Top-K selection,
+median predictions and final metrics remain unchanged. Legacy `depr_` patient
+prefixes and `depr_only` dataset labels are retained from the baseline and do not
+change the configured prediction target or filter any metadata rows.
+
+Twelve configs are in `configs/anxiety/anx_<feature>_<setting>.json`, using the
+same exact production nong files. Each experiment writes independently to
+`/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/anx_<feature>_<setting>`.
+Logs and the submission ledger are under `shap_works/logs/anxiety/` on MN5.
+
+`run_anxiety_experiment.slurm` uses the same environment and resources, with a
+separate `/gpfs/projects/etur92/ozu150751/jad/source-anxiety` Git checkout to
+preserve the depression jobs' source. Run `audit_anxiety_configs.py` before
+`submit_anxiety_all.sh`. Synthetic tests exercise both targets and verify that
+the inactive target column is not used for training.

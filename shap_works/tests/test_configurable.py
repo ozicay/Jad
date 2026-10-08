@@ -16,21 +16,28 @@ from shap_works.optuna_xgb_configurable import FEATURE_SCHEMAS, load_config, run
 ROOT = Path(__file__).resolve().parents[2]
 
 
+@pytest.mark.parametrize('target', ['depresyon_skoru', 'anksiyete_skoru'])
 @pytest.mark.parametrize('kind', ['mfcc', 'egemaps', 'is09'])
 @pytest.mark.parametrize('k', [5, 10, 15, None])
-def test_complete_configured_flow(kind, k, tmp_path, monkeypatch):
+def test_complete_configured_flow(target, kind, k, tmp_path, monkeypatch):
     name = f'{kind}_' + ('all' if k is None else f'top{k}')
-    config = load_config(ROOT / 'shap_works/configs' / f'{name}.json')
+    if target == 'anksiyete_skoru':
+        from shap_works.optuna_xgb_anxiety_configurable import load_config as config_loader, run_experiment as runner
+        config = config_loader(ROOT / 'shap_works/configs/anxiety' / f'anx_{name}.json')
+    else:
+        config = load_config(ROOT / 'shap_works/configs' / f'{name}.json')
+        runner = run_experiment
     column, width = {'mfcc': ('features', 608), 'egemaps': ('egemaps_features', 88),
                      'is09': ('is09_features', 384)}[kind]
     assert (config['feature_column'], config['expected_feature_count']) == (column, width)
-    assert config['target_column'] == 'depresyon_skoru'
+    assert config['target_column'] == target
     csv = tmp_path / 'data.csv'
     rows = []
     for pid in range(3):
         for segment in range(3):
             rows.append(dict(file_name=f'ad{pid}-clip{segment}.wav', label=pid,
-                             depresyon_skoru=pid, anksiyete_skoru=99,
+                             depresyon_skoru=pid if target == 'depresyon_skoru' else 99,
+                             anksiyete_skoru=pid if target == 'anksiyete_skoru' else 99,
                              **{column: ' '.join(str(pid * 1000 + f) for f in range(width))}))
     pd.DataFrame(rows).to_csv(csv, index=False)
     config.update(csv_path=str(csv), output_dir=str(tmp_path / 'output'))
@@ -80,7 +87,7 @@ def test_complete_configured_flow(kind, k, tmp_path, monkeypatch):
     monkeypatch.setattr(optuna, 'create_study', create_study)
     monkeypatch.setattr(gc, 'collect', lambda: None)
     monkeypatch.setattr(__import__('joblib'), 'dump', lambda model, path: Path(path).write_text('synthetic'))
-    run_experiment(config)
+    runner(config)
     expected_trial_widths = [width] * 3 + ([] if k is None else [k] * 3)
     assert [w for w, _ in fits[:len(expected_trial_widths)]] == expected_trial_widths
     assert [w for w, _ in fits[-3:]] == [width if k is None else k] * 3
@@ -131,3 +138,20 @@ def test_reject_invalid_config(update, tmp_path):
     path = tmp_path / 'bad.json'; path.write_text(json.dumps(config))
     with pytest.raises(ValueError):
         load_config(path)
+
+
+def test_anxiety_training_logic_matches_depression():
+    old = ast.parse((ROOT / 'shap_works/optuna_xgb_configurable.py').read_text())
+    new = ast.parse((ROOT / 'shap_works/optuna_xgb_anxiety_configurable.py').read_text())
+    functions = lambda tree: next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == 'run_experiment')
+    assert ast.dump(functions(old)) == ast.dump(functions(new))
+
+
+def test_anxiety_config_rejects_depression_target(tmp_path):
+    from shap_works.optuna_xgb_anxiety_configurable import load_config as anxiety_loader
+    config = anxiety_loader(ROOT / 'shap_works/configs/anxiety/anx_mfcc_all.json')
+    config['target_column'] = 'depresyon_skoru'
+    path = tmp_path / 'bad_anxiety.json'
+    path.write_text(json.dumps(config))
+    with pytest.raises(ValueError, match='Target must be anksiyete_skoru'):
+        anxiety_loader(path)
