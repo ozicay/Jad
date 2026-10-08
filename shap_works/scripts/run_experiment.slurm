@@ -31,4 +31,4 @@ cd "$SOURCE_DIR"
 git rev-parse HEAD
 python --version
 python -c "import numpy, pandas, sklearn, joblib, xgboost, optuna; print('XGBoost', xgboost.__version__, 'Optuna', optuna.__version__)"
-python -u optuna_xgb_configurable.py --config "$CONFIG_PATH"
+python -u shap_works/optuna_xgb_configurable.py --config "$CONFIG_PATH"

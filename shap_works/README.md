@@ -34,7 +34,7 @@ The tests also compare the parser, patient extractor and final training function
 against the baseline AST. Run:
 
 ```bash
-PATH="$PWD/.venv-shap/bin:$PATH" python -m py_compile optuna_xgb_configurable.py
+PATH="$PWD/.venv-shap/bin:$PATH" python -m py_compile shap_works/optuna_xgb_configurable.py
 PATH="$PWD/.venv-shap/bin:$PATH" python -m compileall .
 PATH="$PWD/.venv-shap/bin:$PATH" python -m pytest -v
 ```
@@ -42,3 +42,20 @@ PATH="$PWD/.venv-shap/bin:$PATH" python -m pytest -v
 On MN5, audit deployed configs with `scripts/audit_configs.py CONFIG_DIRECTORY`
 before calling `scripts/submit_all.sh`. It checks headers, every row's parsed
 feature dimension and the complete 12-row configuration table without training.
+
+Source layout in GitHub:
+
+```text
+shap_works/
+├── optuna_xgb_configurable.py
+├── configs/              # 12 production configurations
+├── scripts/              # generic runner, submitter and config audit
+├── tests/                # configuration/LOPO regression tests
+└── README.md
+```
+
+The original baseline and the earlier SHAP experiment remain at their existing
+locations. This layout change does not update the source checkout used by the
+12 jobs already submitted at revision `0d53a434116f0670b8415cd08eb617f53736988e`.
+Future deployments must use the runner and Python path from the same revision.
+MN5 logs and experiment outputs are not versioned.

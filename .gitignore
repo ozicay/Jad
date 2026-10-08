@@ -1,3 +1,7 @@
 __pycache__/
 .pytest_cache/
 .venv-shap/
+
+# MN5 experiment artifacts
+shap_works/logs/
+shap_works/exp_models/

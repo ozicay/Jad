@@ -11,9 +11,9 @@ import pytest
 import optuna
 import xgboost
 
-from optuna_xgb_configurable import FEATURE_SCHEMAS, load_config, run_experiment
+from shap_works.optuna_xgb_configurable import FEATURE_SCHEMAS, load_config, run_experiment
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 
 
 @pytest.mark.parametrize('kind', ['mfcc', 'egemaps', 'is09'])
@@ -116,7 +116,7 @@ def test_wrong_dimension_stops_before_optuna(tmp_path, monkeypatch):
 
 def test_numeric_parser_and_patient_extraction_match_baseline():
     baseline = ast.parse((ROOT / 'optuna_xgb_is09_top15.py').read_text())
-    new = ast.parse((ROOT / 'optuna_xgb_configurable.py').read_text())
+    new = ast.parse((ROOT / 'shap_works/optuna_xgb_configurable.py').read_text())
     for name in ['parse_token', 'parse_features', 'extract_patient_id_from_filename', 'train_loo_model_with_importance']:
         old_fn = next(n for n in ast.walk(baseline) if isinstance(n, ast.FunctionDef) and n.name == name)
         new_fn = next(n for n in ast.walk(new) if isinstance(n, ast.FunctionDef) and n.name == name)

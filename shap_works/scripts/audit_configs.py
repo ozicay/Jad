@@ -3,7 +3,7 @@ import csv
 import sys
 from pathlib import Path
 import re
-sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from optuna_xgb_configurable import load_config
 
 root = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).resolve().parents[1] / 'configs'
