@@ -1,0 +1,10 @@
+{
+    "experiment_name": "mfcc_top10",
+    "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_mfcc_nong",
+    "feature_type": "mfcc",
+    "feature_column": "features",
+    "expected_feature_count": 608,
+    "target_column": "depresyon_skoru",
+    "top_k": 10,
+    "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/mfcc_top10"
+}
