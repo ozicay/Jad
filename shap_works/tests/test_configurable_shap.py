@@ -16,14 +16,14 @@ from shap_works.optuna_xgb_configurable_shap import FEATURE_SCHEMAS, load_config
 ROOT = Path(__file__).resolve().parents[2]
 
 
+@pytest.mark.parametrize('target', ['depresyon_skoru', 'anksiyete_skoru'])
 @pytest.mark.parametrize('kind', ['mfcc', 'egemaps', 'is09'])
 @pytest.mark.parametrize('k', [5, 10, 15, None])
-def test_complete_configured_flow(kind, k, tmp_path, monkeypatch):
-    target = "depresyon_skoru"
+def test_complete_configured_flow(target, kind, k, tmp_path, monkeypatch):
     name = f'{kind}_' + ('all' if k is None else f'top{k}')
     if target == 'anksiyete_skoru':
-        from shap_works.optuna_xgb_anxiety_configurable import load_config as config_loader, run_experiment as runner
-        config = config_loader(ROOT / 'shap_works/configs/anxiety' / f'anx_{name}.json')
+        from shap_works.optuna_xgb_configurable_shap_anksiyete import load_config as config_loader, run_experiment as runner
+        config = config_loader(ROOT / 'shap_works/shap_configs/anksiyete' / f'anksiyete_{name}.json')
     else:
         config = load_config(ROOT / 'shap_works/shap_configs' / f'{name}.json')
         runner = run_experiment
@@ -194,3 +194,15 @@ def test_only_training_importance_method_and_artifacts_changed():
                 node.orelse = node.orelse[:1]
             return self.generic_visit(node)
     assert ast.dump(run(base)) == ast.dump(RemoveArtifactWrites().visit(run(tree)))
+
+
+def test_anxiety_shap_only_changes_config_target():
+    depression = (ROOT / 'shap_works/optuna_xgb_configurable_shap.py').read_text()
+    anxiety = (ROOT / 'shap_works/optuna_xgb_configurable_shap_anksiyete.py').read_text()
+    assert anxiety.replace('anksiyete_skoru', 'depresyon_skoru') == depression
+
+
+def test_anxiety_shap_rejects_depression_config():
+    from shap_works.optuna_xgb_configurable_shap_anksiyete import load_config as anxiety_loader
+    with pytest.raises(ValueError, match='Target must be anksiyete_skoru'):
+        anxiety_loader(ROOT / 'shap_works/shap_configs/mfcc_top5.json')

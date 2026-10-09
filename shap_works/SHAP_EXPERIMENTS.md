@@ -42,3 +42,22 @@ values, prohibit gain usage, verify exact training-row SHAP input, per-trial
 recomputation, ranking/counts, All mode, and a real CPU TreeExplainer smoke.
 AST normalization confirms the complete training function matches gain after
 only importance substitutions and additional artifact writes.
+
+## Anksiyete SHAP
+
+`optuna_xgb_configurable_shap_anksiyete.py` is an unchanged copy of the depression
+SHAP implementation except for target validation (`anksiyete_skoru`). The same
+three production nong metadata files, dimensions and 12 feature settings apply.
+
+Names explicitly include `anksiyete`:
+
+- Configs: `shap_configs/anksiyete/anksiyete_<feature>_<setting>.json`.
+- Outputs: `shap_exp_models/anksiyete_<feature>_<setting>/`.
+- Logs: `shap_logs/anksiyete/shap_anksiyete_<feature>_<setting>_<job_id>.out` / `.err`.
+- Runner: `shap_scripts/run_anksiyete_experiment.slurm`.
+- Submitter: `shap_scripts/submit_anksiyete_all.sh`.
+- Audit: `shap_scripts/audit_anksiyete_configs.py`.
+- Independent source checkout: `source-shap-anksiyete/` under MN5 `shap_works`.
+
+All SHAP computations remain training-only, independently recomputed per trial.
+Slurm/environment/resource settings and evaluation remain unchanged.
