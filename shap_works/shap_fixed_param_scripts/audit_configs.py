@@ -24,7 +24,7 @@ for name in names:
     assert len(matches)==1 and ast.literal_eval(matches[0])==config["fixed_params"]
     assert config["gain_parameter_source"].startswith("/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/"+name+"_")
     params=config["fixed_params"]
-    print("\t".join(str(x) for x in [name,params["learning_rate"],params["max_depth"],params["n_estimators"],config["gain_parameter_source"],config["csv_path"],config["feature_column"],config["top_k"],config["output_dir"] ))
+    print("\t".join(str(x) for x in [name,params["learning_rate"],params["max_depth"],params["n_estimators"],config["gain_parameter_source"],config["csv_path"],config["feature_column"],config["top_k"],config["output_dir"]] ))
     configs.append(config)
 # Parse every row with baseline token rules and validate dimension, keeping all rows.
 num_re = re.compile(r'[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+(?:\.\d+)?)?')
