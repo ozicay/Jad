@@ -1,0 +1,10 @@
+{
+    "experiment_name": "is09_top10",
+    "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_is09_nong",
+    "feature_type": "is09",
+    "feature_column": "is09_features",
+    "expected_feature_count": 384,
+    "target_column": "depresyon_skoru",
+    "top_k": 10,
+    "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/shap_exp_models/is09_top10"
+}

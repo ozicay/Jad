@@ -5,3 +5,7 @@ __pycache__/
 # MN5 experiment artifacts
 shap_works/logs/
 shap_works/exp_models/
+
+shap_works/shap_logs/
+shap_works/shap_exp_models/
+shap_works/source-shap-configurable/

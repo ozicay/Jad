@@ -1,0 +1,10 @@
+{
+    "experiment_name": "egemaps_all",
+    "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_egemaps_nong",
+    "feature_type": "egemaps",
+    "feature_column": "egemaps_features",
+    "expected_feature_count": 88,
+    "target_column": "depresyon_skoru",
+    "top_k": null,
+    "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/shap_exp_models/egemaps_all"
+}
