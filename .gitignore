@@ -14,3 +14,5 @@ shap_works/source-shap-anksiyete/
 shap_works/shap_fixed_param_logs/
 shap_works/shap_fixed_param_exp_models/
 shap_works/source-shap-fixed-params/
+
+shap_works/source-shap-fixed-params-anksiyete/

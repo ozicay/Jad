@@ -37,3 +37,18 @@ CPUs, default memory, 24 hours. No gain or earlier SHAP output is overwritten.
 Tests cover all nine settings, forbid new Optuna, verify both stages receive
 identical fixed parameters, verify training-only SHAP and no selected-model SHAP,
 median/LOPO, exact parameter registry matching, and output/comparison artifacts.
+
+## Anksiyete: same controlled design
+
+`optuna_xgb_configurable_shap_fixed_params_anksiyete.py` changes only target
+validation to `anksiyete_skoru`; the complete training function and helper are
+identical to the fixed-parameter depression implementation. Nine configs in
+`shap_fixed_param_configs/anksiyete/` use each matching anxiety gain log's own
+best_params (registry entries prefixed `anx_`). No Optuna or All retraining.
+
+Output folders explicitly use `shap_fixed_param_exp_models/anksiyete_<setting>`;
+logs `shap_fixed_param_logs/anksiyete/shap_fixed_anksiyete_<setting>_<job>.*`.
+Separate runner, audit, and submit scripts have `anksiyete` in their names.
+An independent source-shap-fixed-params-anksiyete checkout preserves previous
+runs. SHAP receives only full-feature fold training rows; both training stages
+use the same fixed params. Clinical labels/LOPO/median/metrics remain unchanged.

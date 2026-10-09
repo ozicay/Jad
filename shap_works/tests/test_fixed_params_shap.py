@@ -16,14 +16,14 @@ from shap_works.optuna_xgb_configurable_shap_fixed_params import FEATURE_SCHEMAS
 ROOT = Path(__file__).resolve().parents[2]
 
 
+@pytest.mark.parametrize('target', ['depresyon_skoru', 'anksiyete_skoru'])
 @pytest.mark.parametrize('kind', ['mfcc', 'egemaps', 'is09'])
 @pytest.mark.parametrize('k', [5, 10, 15])
-def test_complete_configured_flow(kind, k, tmp_path, monkeypatch):
-    target = "depresyon_skoru"
+def test_complete_configured_flow(target, kind, k, tmp_path, monkeypatch):
     name = f'{kind}_' + ('all' if k is None else f'top{k}')
     if target == 'anksiyete_skoru':
-        from shap_works.optuna_xgb_configurable_shap_anksiyete import load_config as config_loader, run_experiment as runner
-        config = config_loader(ROOT / 'shap_works/shap_configs/anksiyete' / f'anksiyete_{name}.json')
+        from shap_works.optuna_xgb_configurable_shap_fixed_params_anksiyete import load_config as config_loader, run_experiment as runner
+        config = config_loader(ROOT / 'shap_works/shap_fixed_param_configs/anksiyete' / f'anksiyete_{name}.json')
     else:
         config = load_config(ROOT / 'shap_works/shap_fixed_param_configs' / f'{name}.json')
         runner = run_experiment
@@ -170,3 +170,21 @@ def test_params_match_verified_gain_registry():
             assert c['fixed_params']==record['best_params']
             assert c['gain_parameter_source']==record['stdout']
             assert c['csv_path']==record['config']['csv_path']
+
+
+def test_fixed_anxiety_only_changes_target_validation():
+    depression=(ROOT/'shap_works/optuna_xgb_configurable_shap_fixed_params.py').read_text()
+    anxiety=(ROOT/'shap_works/optuna_xgb_configurable_shap_fixed_params_anksiyete.py').read_text()
+    assert anxiety.replace('anksiyete_skoru','depresyon_skoru')==depression
+
+
+def test_fixed_anxiety_params_match_gain_registry():
+    from shap_works.optuna_xgb_configurable_shap_fixed_params_anksiyete import load_config as anxiety_loader
+    records=json.loads((ROOT/'shap_works/gain_best_params_verified.json').read_text())
+    for x in records:
+        if x['target_column']=='anksiyete_skoru' and x['top_k'] is not None:
+            name='anksiyete_'+x['experiment_name'].removeprefix('anx_')
+            c=anxiety_loader(ROOT/'shap_works/shap_fixed_param_configs/anksiyete'/f'{name}.json')
+            assert c['fixed_params']==x['best_params']
+            assert c['gain_parameter_source']==x['stdout']
+            assert c['csv_path']==x['config']['csv_path']
