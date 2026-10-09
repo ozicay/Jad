@@ -1,0 +1,19 @@
+{
+    "experiment_name": "is09_top15",
+    "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_is09_nong",
+    "feature_type": "is09",
+    "feature_column": "is09_features",
+    "expected_feature_count": 384,
+    "target_column": "depresyon_skoru",
+    "top_k": 15,
+    "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/shap_fixed_param_exp_models/is09_top15",
+    "fixed_params": {
+        "learning_rate": 0.015027102981266959,
+        "max_depth": 8,
+        "n_estimators": 216
+    },
+    "gain_parameter_source": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/is09_top15_47071663.out",
+    "gain_output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/is09_top15",
+    "gain_source_commit": "0d53a434116f0670b8415cd08eb617f53736988e",
+    "gain_job_id": "47071663"
+}

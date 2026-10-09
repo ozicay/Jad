@@ -10,3 +10,4 @@ alınır; günlük asıl logların, modellerin ve CSV sonuçlarının yerini tut
 
 Yeni kayıtta: amaç/karar, yöntem ve veri, config/source commit, doğrulama,
 MN5 kaynak ve çıktı yolları, job ID/durum, sonuç kanıtı ve kalan iş bulunmalı.
+- [2026-10-10: sabit gain parametreli kontrollü SHAP](2026-10-10.md)

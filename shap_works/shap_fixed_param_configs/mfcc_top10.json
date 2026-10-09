@@ -1,0 +1,19 @@
+{
+    "experiment_name": "mfcc_top10",
+    "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_mfcc_nong",
+    "feature_type": "mfcc",
+    "feature_column": "features",
+    "expected_feature_count": 608,
+    "target_column": "depresyon_skoru",
+    "top_k": 10,
+    "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/shap_fixed_param_exp_models/mfcc_top10",
+    "fixed_params": {
+        "learning_rate": 0.0059492414093469444,
+        "max_depth": 5,
+        "n_estimators": 341
+    },
+    "gain_parameter_source": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/mfcc_top10_47071654.out",
+    "gain_output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/mfcc_top10",
+    "gain_source_commit": "0d53a434116f0670b8415cd08eb617f53736988e",
+    "gain_job_id": "47071654"
+}

@@ -1,0 +1,674 @@
+[
+  {
+    "experiment_name": "mfcc_top5",
+    "target_column": "depresyon_skoru",
+    "feature_type": "mfcc",
+    "top_k": 5,
+    "best_params": {
+      "learning_rate": 0.0035181649271137667,
+      "max_depth": 8,
+      "n_estimators": 429
+    },
+    "best_trial": 15,
+    "best_objective_value": 6.803562720616658,
+    "job_id": "47071651",
+    "source_commit": "0d53a434116f0670b8415cd08eb617f53736988e",
+    "config": {
+      "experiment_name": "mfcc_top5",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_mfcc_nong",
+      "feature_type": "mfcc",
+      "feature_column": "features",
+      "expected_feature_count": 608,
+      "target_column": "depresyon_skoru",
+      "top_k": 5,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/mfcc_top5"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/mfcc_top5.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/mfcc_top5_47071651.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/mfcc_top5_47071651.err"
+  },
+  {
+    "experiment_name": "mfcc_top10",
+    "target_column": "depresyon_skoru",
+    "feature_type": "mfcc",
+    "top_k": 10,
+    "best_params": {
+      "learning_rate": 0.0059492414093469444,
+      "max_depth": 5,
+      "n_estimators": 341
+    },
+    "best_trial": 15,
+    "best_objective_value": 6.83422999382019,
+    "job_id": "47071654",
+    "source_commit": "0d53a434116f0670b8415cd08eb617f53736988e",
+    "config": {
+      "experiment_name": "mfcc_top10",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_mfcc_nong",
+      "feature_type": "mfcc",
+      "feature_column": "features",
+      "expected_feature_count": 608,
+      "target_column": "depresyon_skoru",
+      "top_k": 10,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/mfcc_top10"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/mfcc_top10.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/mfcc_top10_47071654.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/mfcc_top10_47071654.err"
+  },
+  {
+    "experiment_name": "mfcc_top15",
+    "target_column": "depresyon_skoru",
+    "feature_type": "mfcc",
+    "top_k": 15,
+    "best_params": {
+      "learning_rate": 0.012489249174122313,
+      "max_depth": 10,
+      "n_estimators": 500
+    },
+    "best_trial": 11,
+    "best_objective_value": 6.8604052623113,
+    "job_id": "47071655",
+    "source_commit": "0d53a434116f0670b8415cd08eb617f53736988e",
+    "config": {
+      "experiment_name": "mfcc_top15",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_mfcc_nong",
+      "feature_type": "mfcc",
+      "feature_column": "features",
+      "expected_feature_count": 608,
+      "target_column": "depresyon_skoru",
+      "top_k": 15,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/mfcc_top15"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/mfcc_top15.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/mfcc_top15_47071655.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/mfcc_top15_47071655.err"
+  },
+  {
+    "experiment_name": "mfcc_all",
+    "target_column": "depresyon_skoru",
+    "feature_type": "mfcc",
+    "top_k": null,
+    "best_params": {
+      "learning_rate": 0.0030034776676733316,
+      "max_depth": 5,
+      "n_estimators": 205
+    },
+    "best_trial": 6,
+    "best_objective_value": 7.168103774388631,
+    "job_id": "47071656",
+    "source_commit": "0d53a434116f0670b8415cd08eb617f53736988e",
+    "config": {
+      "experiment_name": "mfcc_all",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_mfcc_nong",
+      "feature_type": "mfcc",
+      "feature_column": "features",
+      "expected_feature_count": 608,
+      "target_column": "depresyon_skoru",
+      "top_k": null,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/mfcc_all"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/mfcc_all.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/mfcc_all_47071656.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/mfcc_all_47071656.err"
+  },
+  {
+    "experiment_name": "egemaps_top5",
+    "target_column": "depresyon_skoru",
+    "feature_type": "egemaps",
+    "top_k": 5,
+    "best_params": {
+      "learning_rate": 0.0028877930559880966,
+      "max_depth": 7,
+      "n_estimators": 300
+    },
+    "best_trial": 7,
+    "best_objective_value": 6.919377589225769,
+    "job_id": "47071657",
+    "source_commit": "0d53a434116f0670b8415cd08eb617f53736988e",
+    "config": {
+      "experiment_name": "egemaps_top5",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_egemaps_nong",
+      "feature_type": "egemaps",
+      "feature_column": "egemaps_features",
+      "expected_feature_count": 88,
+      "target_column": "depresyon_skoru",
+      "top_k": 5,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/egemaps_top5"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/egemaps_top5.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/egemaps_top5_47071657.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/egemaps_top5_47071657.err"
+  },
+  {
+    "experiment_name": "egemaps_top10",
+    "target_column": "depresyon_skoru",
+    "feature_type": "egemaps",
+    "top_k": 10,
+    "best_params": {
+      "learning_rate": 0.02254563240735827,
+      "max_depth": 6,
+      "n_estimators": 102
+    },
+    "best_trial": 14,
+    "best_objective_value": 6.952781629562378,
+    "job_id": "47071658",
+    "source_commit": "0d53a434116f0670b8415cd08eb617f53736988e",
+    "config": {
+      "experiment_name": "egemaps_top10",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_egemaps_nong",
+      "feature_type": "egemaps",
+      "feature_column": "egemaps_features",
+      "expected_feature_count": 88,
+      "target_column": "depresyon_skoru",
+      "top_k": 10,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/egemaps_top10"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/egemaps_top10.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/egemaps_top10_47071658.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/egemaps_top10_47071658.err"
+  },
+  {
+    "experiment_name": "egemaps_top15",
+    "target_column": "depresyon_skoru",
+    "feature_type": "egemaps",
+    "top_k": 15,
+    "best_params": {
+      "learning_rate": 0.005267784927872681,
+      "max_depth": 8,
+      "n_estimators": 213
+    },
+    "best_trial": 17,
+    "best_objective_value": 6.847817262013753,
+    "job_id": "47071659",
+    "source_commit": "0d53a434116f0670b8415cd08eb617f53736988e",
+    "config": {
+      "experiment_name": "egemaps_top15",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_egemaps_nong",
+      "feature_type": "egemaps",
+      "feature_column": "egemaps_features",
+      "expected_feature_count": 88,
+      "target_column": "depresyon_skoru",
+      "top_k": 15,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/egemaps_top15"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/egemaps_top15.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/egemaps_top15_47071659.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/egemaps_top15_47071659.err"
+  },
+  {
+    "experiment_name": "egemaps_all",
+    "target_column": "depresyon_skoru",
+    "feature_type": "egemaps",
+    "top_k": null,
+    "best_params": {
+      "learning_rate": 0.001012295194125308,
+      "max_depth": 10,
+      "n_estimators": 103
+    },
+    "best_trial": 13,
+    "best_objective_value": 7.170837227503458,
+    "job_id": "47071660",
+    "source_commit": "0d53a434116f0670b8415cd08eb617f53736988e",
+    "config": {
+      "experiment_name": "egemaps_all",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_egemaps_nong",
+      "feature_type": "egemaps",
+      "feature_column": "egemaps_features",
+      "expected_feature_count": 88,
+      "target_column": "depresyon_skoru",
+      "top_k": null,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/egemaps_all"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/egemaps_all.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/egemaps_all_47071660.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/egemaps_all_47071660.err"
+  },
+  {
+    "experiment_name": "is09_top5",
+    "target_column": "depresyon_skoru",
+    "feature_type": "is09",
+    "top_k": 5,
+    "best_params": {
+      "learning_rate": 0.08935909214975327,
+      "max_depth": 14,
+      "n_estimators": 195
+    },
+    "best_trial": 3,
+    "best_objective_value": 6.6239185015360516,
+    "job_id": "47071661",
+    "source_commit": "0d53a434116f0670b8415cd08eb617f53736988e",
+    "config": {
+      "experiment_name": "is09_top5",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_is09_nong",
+      "feature_type": "is09",
+      "feature_column": "is09_features",
+      "expected_feature_count": 384,
+      "target_column": "depresyon_skoru",
+      "top_k": 5,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/is09_top5"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/is09_top5.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/is09_top5_47071661.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/is09_top5_47071661.err"
+  },
+  {
+    "experiment_name": "is09_top10",
+    "target_column": "depresyon_skoru",
+    "feature_type": "is09",
+    "top_k": 10,
+    "best_params": {
+      "learning_rate": 0.04540059782609445,
+      "max_depth": 14,
+      "n_estimators": 102
+    },
+    "best_trial": 17,
+    "best_objective_value": 6.41170105934143,
+    "job_id": "47071662",
+    "source_commit": "0d53a434116f0670b8415cd08eb617f53736988e",
+    "config": {
+      "experiment_name": "is09_top10",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_is09_nong",
+      "feature_type": "is09",
+      "feature_column": "is09_features",
+      "expected_feature_count": 384,
+      "target_column": "depresyon_skoru",
+      "top_k": 10,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/is09_top10"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/is09_top10.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/is09_top10_47071662.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/is09_top10_47071662.err"
+  },
+  {
+    "experiment_name": "is09_top15",
+    "target_column": "depresyon_skoru",
+    "feature_type": "is09",
+    "top_k": 15,
+    "best_params": {
+      "learning_rate": 0.015027102981266959,
+      "max_depth": 8,
+      "n_estimators": 216
+    },
+    "best_trial": 16,
+    "best_objective_value": 6.258124478658041,
+    "job_id": "47071663",
+    "source_commit": "0d53a434116f0670b8415cd08eb617f53736988e",
+    "config": {
+      "experiment_name": "is09_top15",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_is09_nong",
+      "feature_type": "is09",
+      "feature_column": "is09_features",
+      "expected_feature_count": 384,
+      "target_column": "depresyon_skoru",
+      "top_k": 15,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/is09_top15"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/is09_top15.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/is09_top15_47071663.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/is09_top15_47071663.err"
+  },
+  {
+    "experiment_name": "is09_all",
+    "target_column": "depresyon_skoru",
+    "feature_type": "is09",
+    "top_k": null,
+    "best_params": {
+      "learning_rate": 0.03762740017911044,
+      "max_depth": 5,
+      "n_estimators": 442
+    },
+    "best_trial": 19,
+    "best_objective_value": 7.027173940340678,
+    "job_id": "47071664",
+    "source_commit": "0d53a434116f0670b8415cd08eb617f53736988e",
+    "config": {
+      "experiment_name": "is09_all",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_is09_nong",
+      "feature_type": "is09",
+      "feature_column": "is09_features",
+      "expected_feature_count": 384,
+      "target_column": "depresyon_skoru",
+      "top_k": null,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/is09_all"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/is09_all.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/is09_all_47071664.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/is09_all_47071664.err"
+  },
+  {
+    "experiment_name": "anx_mfcc_top5",
+    "target_column": "anksiyete_skoru",
+    "feature_type": "mfcc",
+    "top_k": 5,
+    "best_params": {
+      "learning_rate": 0.024403245587681383,
+      "max_depth": 8,
+      "n_estimators": 446
+    },
+    "best_trial": 12,
+    "best_objective_value": 9.974995231628418,
+    "job_id": "47074633",
+    "source_commit": "aa874c44fbda40d23d814aace74d2bf16ee0d222",
+    "config": {
+      "experiment_name": "anx_mfcc_top5",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_mfcc_nong",
+      "feature_type": "mfcc",
+      "feature_column": "features",
+      "expected_feature_count": 608,
+      "target_column": "anksiyete_skoru",
+      "top_k": 5,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/anx_mfcc_top5"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/anxiety/anx_mfcc_top5.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_mfcc_top5_47074633.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_mfcc_top5_47074633.err"
+  },
+  {
+    "experiment_name": "anx_mfcc_top10",
+    "target_column": "anksiyete_skoru",
+    "feature_type": "mfcc",
+    "top_k": 10,
+    "best_params": {
+      "learning_rate": 0.034008423553080314,
+      "max_depth": 4,
+      "n_estimators": 394
+    },
+    "best_trial": 13,
+    "best_objective_value": 9.445167175928752,
+    "job_id": "47074634",
+    "source_commit": "aa874c44fbda40d23d814aace74d2bf16ee0d222",
+    "config": {
+      "experiment_name": "anx_mfcc_top10",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_mfcc_nong",
+      "feature_type": "mfcc",
+      "feature_column": "features",
+      "expected_feature_count": 608,
+      "target_column": "anksiyete_skoru",
+      "top_k": 10,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/anx_mfcc_top10"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/anxiety/anx_mfcc_top10.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_mfcc_top10_47074634.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_mfcc_top10_47074634.err"
+  },
+  {
+    "experiment_name": "anx_mfcc_top15",
+    "target_column": "anksiyete_skoru",
+    "feature_type": "mfcc",
+    "top_k": 15,
+    "best_params": {
+      "learning_rate": 0.02086987774678312,
+      "max_depth": 5,
+      "n_estimators": 327
+    },
+    "best_trial": 3,
+    "best_objective_value": 9.64817659854889,
+    "job_id": "47074635",
+    "source_commit": "aa874c44fbda40d23d814aace74d2bf16ee0d222",
+    "config": {
+      "experiment_name": "anx_mfcc_top15",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_mfcc_nong",
+      "feature_type": "mfcc",
+      "feature_column": "features",
+      "expected_feature_count": 608,
+      "target_column": "anksiyete_skoru",
+      "top_k": 15,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/anx_mfcc_top15"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/anxiety/anx_mfcc_top15.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_mfcc_top15_47074635.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_mfcc_top15_47074635.err"
+  },
+  {
+    "experiment_name": "anx_mfcc_all",
+    "target_column": "anksiyete_skoru",
+    "feature_type": "mfcc",
+    "top_k": null,
+    "best_params": {
+      "learning_rate": 0.0011529745759201388,
+      "max_depth": 4,
+      "n_estimators": 355
+    },
+    "best_trial": 15,
+    "best_objective_value": 10.844279114405314,
+    "job_id": "47074636",
+    "source_commit": "aa874c44fbda40d23d814aace74d2bf16ee0d222",
+    "config": {
+      "experiment_name": "anx_mfcc_all",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_mfcc_nong",
+      "feature_type": "mfcc",
+      "feature_column": "features",
+      "expected_feature_count": 608,
+      "target_column": "anksiyete_skoru",
+      "top_k": null,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/anx_mfcc_all"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/anxiety/anx_mfcc_all.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_mfcc_all_47074636.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_mfcc_all_47074636.err"
+  },
+  {
+    "experiment_name": "anx_egemaps_top5",
+    "target_column": "anksiyete_skoru",
+    "feature_type": "egemaps",
+    "top_k": 5,
+    "best_params": {
+      "learning_rate": 0.0027083765330258632,
+      "max_depth": 4,
+      "n_estimators": 126
+    },
+    "best_trial": 14,
+    "best_objective_value": 10.677771695454915,
+    "job_id": "47074637",
+    "source_commit": "aa874c44fbda40d23d814aace74d2bf16ee0d222",
+    "config": {
+      "experiment_name": "anx_egemaps_top5",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_egemaps_nong",
+      "feature_type": "egemaps",
+      "feature_column": "egemaps_features",
+      "expected_feature_count": 88,
+      "target_column": "anksiyete_skoru",
+      "top_k": 5,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/anx_egemaps_top5"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/anxiety/anx_egemaps_top5.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_egemaps_top5_47074637.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_egemaps_top5_47074637.err"
+  },
+  {
+    "experiment_name": "anx_egemaps_top10",
+    "target_column": "anksiyete_skoru",
+    "feature_type": "egemaps",
+    "top_k": 10,
+    "best_params": {
+      "learning_rate": 0.004479431560993886,
+      "max_depth": 9,
+      "n_estimators": 451
+    },
+    "best_trial": 5,
+    "best_objective_value": 10.218496592839559,
+    "job_id": "47074638",
+    "source_commit": "aa874c44fbda40d23d814aace74d2bf16ee0d222",
+    "config": {
+      "experiment_name": "anx_egemaps_top10",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_egemaps_nong",
+      "feature_type": "egemaps",
+      "feature_column": "egemaps_features",
+      "expected_feature_count": 88,
+      "target_column": "anksiyete_skoru",
+      "top_k": 10,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/anx_egemaps_top10"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/anxiety/anx_egemaps_top10.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_egemaps_top10_47074638.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_egemaps_top10_47074638.err"
+  },
+  {
+    "experiment_name": "anx_egemaps_top15",
+    "target_column": "anksiyete_skoru",
+    "feature_type": "egemaps",
+    "top_k": 15,
+    "best_params": {
+      "learning_rate": 0.005346666022880017,
+      "max_depth": 8,
+      "n_estimators": 333
+    },
+    "best_trial": 4,
+    "best_objective_value": 9.977360947926838,
+    "job_id": "47074639",
+    "source_commit": "aa874c44fbda40d23d814aace74d2bf16ee0d222",
+    "config": {
+      "experiment_name": "anx_egemaps_top15",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_egemaps_nong",
+      "feature_type": "egemaps",
+      "feature_column": "egemaps_features",
+      "expected_feature_count": 88,
+      "target_column": "anksiyete_skoru",
+      "top_k": 15,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/anx_egemaps_top15"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/anxiety/anx_egemaps_top15.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_egemaps_top15_47074639.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_egemaps_top15_47074639.err"
+  },
+  {
+    "experiment_name": "anx_egemaps_all",
+    "target_column": "anksiyete_skoru",
+    "feature_type": "egemaps",
+    "top_k": null,
+    "best_params": {
+      "learning_rate": 0.0016984286313966568,
+      "max_depth": 12,
+      "n_estimators": 108
+    },
+    "best_trial": 13,
+    "best_objective_value": 10.786222457885742,
+    "job_id": "47074640",
+    "source_commit": "aa874c44fbda40d23d814aace74d2bf16ee0d222",
+    "config": {
+      "experiment_name": "anx_egemaps_all",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_egemaps_nong",
+      "feature_type": "egemaps",
+      "feature_column": "egemaps_features",
+      "expected_feature_count": 88,
+      "target_column": "anksiyete_skoru",
+      "top_k": null,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/anx_egemaps_all"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/anxiety/anx_egemaps_all.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_egemaps_all_47074640.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_egemaps_all_47074640.err"
+  },
+  {
+    "experiment_name": "anx_is09_top5",
+    "target_column": "anksiyete_skoru",
+    "feature_type": "is09",
+    "top_k": 5,
+    "best_params": {
+      "learning_rate": 0.03965570071128664,
+      "max_depth": 9,
+      "n_estimators": 169
+    },
+    "best_trial": 19,
+    "best_objective_value": 10.2093665599823,
+    "job_id": "47074641",
+    "source_commit": "aa874c44fbda40d23d814aace74d2bf16ee0d222",
+    "config": {
+      "experiment_name": "anx_is09_top5",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_is09_nong",
+      "feature_type": "is09",
+      "feature_column": "is09_features",
+      "expected_feature_count": 384,
+      "target_column": "anksiyete_skoru",
+      "top_k": 5,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/anx_is09_top5"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/anxiety/anx_is09_top5.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_is09_top5_47074641.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_is09_top5_47074641.err"
+  },
+  {
+    "experiment_name": "anx_is09_top10",
+    "target_column": "anksiyete_skoru",
+    "feature_type": "is09",
+    "top_k": 10,
+    "best_params": {
+      "learning_rate": 0.005022356175900819,
+      "max_depth": 13,
+      "n_estimators": 356
+    },
+    "best_trial": 15,
+    "best_objective_value": 9.3875510374705,
+    "job_id": "47074642",
+    "source_commit": "aa874c44fbda40d23d814aace74d2bf16ee0d222",
+    "config": {
+      "experiment_name": "anx_is09_top10",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_is09_nong",
+      "feature_type": "is09",
+      "feature_column": "is09_features",
+      "expected_feature_count": 384,
+      "target_column": "anksiyete_skoru",
+      "top_k": 10,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/anx_is09_top10"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/anxiety/anx_is09_top10.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_is09_top10_47074642.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_is09_top10_47074642.err"
+  },
+  {
+    "experiment_name": "anx_is09_top15",
+    "target_column": "anksiyete_skoru",
+    "feature_type": "is09",
+    "top_k": 15,
+    "best_params": {
+      "learning_rate": 0.01572416514617204,
+      "max_depth": 14,
+      "n_estimators": 268
+    },
+    "best_trial": 11,
+    "best_objective_value": 9.653496321042379,
+    "job_id": "47074643",
+    "source_commit": "aa874c44fbda40d23d814aace74d2bf16ee0d222",
+    "config": {
+      "experiment_name": "anx_is09_top15",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_is09_nong",
+      "feature_type": "is09",
+      "feature_column": "is09_features",
+      "expected_feature_count": 384,
+      "target_column": "anksiyete_skoru",
+      "top_k": 15,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/anx_is09_top15"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/anxiety/anx_is09_top15.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_is09_top15_47074643.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_is09_top15_47074643.err"
+  },
+  {
+    "experiment_name": "anx_is09_all",
+    "target_column": "anksiyete_skoru",
+    "feature_type": "is09",
+    "top_k": null,
+    "best_params": {
+      "learning_rate": 0.026085782567849387,
+      "max_depth": 7,
+      "n_estimators": 454
+    },
+    "best_trial": 3,
+    "best_objective_value": 10.477936100959777,
+    "job_id": "47074644",
+    "source_commit": "aa874c44fbda40d23d814aace74d2bf16ee0d222",
+    "config": {
+      "experiment_name": "anx_is09_all",
+      "csv_path": "/gpfs/projects/etur92/ozu150751/jad/nongeriatri_metadata_negative/metadata_with_is09_nong",
+      "feature_type": "is09",
+      "feature_column": "is09_features",
+      "expected_feature_count": 384,
+      "target_column": "anksiyete_skoru",
+      "top_k": null,
+      "output_dir": "/gpfs/projects/etur92/ozu150751/jad/shap_works/exp_models/anx_is09_all"
+    },
+    "config_path": "/gpfs/projects/etur92/ozu150751/jad/shap_works/configs/anxiety/anx_is09_all.json",
+    "stdout": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_is09_all_47074644.out",
+    "stderr": "/gpfs/projects/etur92/ozu150751/jad/shap_works/logs/anxiety/anx_is09_all_47074644.err"
+  }
+]
