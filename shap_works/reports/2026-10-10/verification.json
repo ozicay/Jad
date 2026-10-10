@@ -1,0 +1,18 @@
+{
+  "verified_at": "2026-10-10T12:13:11.969012+03:00",
+  "jobs": 66,
+  "all_completed": true,
+  "all_exit_codes": "0:0",
+  "summary_rows": 72,
+  "direct_metric_rows": 120,
+  "reused_gain_all_rows": 6,
+  "patients_per_setting": 120,
+  "errors": [],
+  "max_rmse_recomputation_difference": 8.024577370058239e-05,
+  "max_mae_recomputation_difference": 7.39999999970209e-05,
+  "rounding_tolerance": 0.001001,
+  "fixed_gain_params_match": true,
+  "fixed_full_feature_controls_match_gain": true,
+  "source": "MN5 production final_patient_level_rmse_mae.csv and stored patient predictions; sacct and log checks",
+  "rounding_note": "Patient predictions/labels stored at three decimals; final metrics stored at six. CSV values are the authoritative final metrics, recomputation uses a 0.001001 bound. Models were not reloaded or predictions rerun."
+}
