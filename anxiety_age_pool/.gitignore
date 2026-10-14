@@ -1,0 +1,13 @@
+outputs/
+logs/
+metadata/
+non_geriatri_metadata/
+geriatri_new/
+geriatri_job/xgb_codes/
+expected_pooled_patient_index.csv
+wheels/
+env_site/
+__pycache__/
+SHA256SUMS
+SOURCE_COMMIT
+deployment_status.json
