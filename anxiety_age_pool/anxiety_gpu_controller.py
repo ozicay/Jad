@@ -103,10 +103,10 @@ def worker(name):
     w.run_experiment(name,family,k,data)
 
 
-def collect_summary():
+def collect_summary(exclude=()):
     import pandas as pd
     import anxiety_four_gpu_worker as w
-    rows=[pd.read_csv(OUTPUT/name/'final_metrics.csv') for name,_,_ in w.CONFIGURATIONS if completed(name)]
+    rows=[pd.read_csv(OUTPUT/name/'final_metrics.csv') for name,_,_ in w.CONFIGURATIONS if name not in exclude and completed(name)]
     if rows:
         temporary=OUTPUT/'anxiety_age_pool_summary.csv.tmp'
         pd.concat(rows,ignore_index=True).to_csv(temporary,index=False)
@@ -139,7 +139,8 @@ def main():
     if not os.environ.get('SLURM_JOB_ID'):
         raise RuntimeError('Training controller must run inside Slurm')
     pending=[name for name,_,_ in w.CONFIGURATIONS if not completed(name)]
-    collect_summary()
+    running=set(pending)
+    collect_summary(exclude=running)
     failures=[]
     # Four bounded config workers; each step receives a different GPU from Slurm.
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
@@ -148,7 +149,9 @@ def main():
             name,code=future.result()
             print('CONFIG EXIT',name,code,flush=True)
             if code:failures.append((name,code))
-            else:collect_summary()
+            else:
+                running.remove(name)
+                collect_summary(exclude=running)
     if failures:
         raise RuntimeError(f'Configuration failures: {failures}')
     collect_summary()

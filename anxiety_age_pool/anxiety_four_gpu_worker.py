@@ -310,4 +310,3 @@ def run_experiment(name, family, top_k, data):
         logging.getLogger().removeHandler(handler)
         logging.getLogger('optuna').removeHandler(handler)
         handler.close()
-
