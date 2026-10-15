@@ -1,0 +1,39 @@
+{
+  "prepared_at": "2026-10-15T15:03:17.870652+00:00",
+  "destination": "/gpfs/projects/etur92/ozu150751/jad/edaic_xgb",
+  "reference": "reference/optuna_xgb_is09_top15.py",
+  "parent_commit": "3fc84767018a054b915b107304a9db7d56266f22",
+  "source_commit": null,
+  "source_status": "uncommitted exact source recorded by SHA256",
+  "local_metadata_source": "/home/utku/paper_3/Edaic_data/metadata",
+  "target": "depresyon_skoru",
+  "dimensions": {
+    "mfcc": 608,
+    "egemaps": 88,
+    "is09": 384
+  },
+  "num_patients": 233,
+  "num_segments": 4829,
+  "optuna_trials_per_config": 20,
+  "num_configurations": 12,
+  "local_data_validation": "passed",
+  "synthetic_tests": "passed; 240 Optuna trials with synthetic models; zero clinical fits",
+  "slurm_job_id": null,
+  "training_status": "not started; earlier user instruction reserves starting to user, pending clarification",
+  "files_sha256": {
+    ".gitignore": "307397525e9da20a6b1534d0e5dcafa09c7e72c1541cfdd7bc347f7afa148b88",
+    "README.md": "ba2e15c0712db12bdec3c43dfd4cd3269eddc957f8688ca81c6041caec8af7af",
+    "SOURCE_PARENT_COMMIT": "9aa32d8e89737b2a6f98fd3bd4438b74943b9e6ddb84fcf67ec9944036df8d95",
+    "metadata/metadata_with_egemapsv0b1.csv": "472727fa6f2b82631ae6987035e8591402930f12419b96f950e0efa2d5ffda02",
+    "metadata/metadata_with_is09.csv": "48972924d3b5527266c46362b8b37095485600e0e1befdce0a1ec71ab7ffc6a5",
+    "metadata/metadata_with_mfcc.csv": "c860cda14f1c031f838a5ac7e6824f60c7b5ed189e7aa291aac0404ee3318ae0",
+    "record_environment.py": "b8562ccc0bf326471cd0e78eb2b224c3f93d91d4fd9eb44c2785f4c94816506e",
+    "reference/optuna_xgb_is09_top15.py": "e78e97f99278321b3d12035b638e874f2088f8cb5b828a08af7313b188e4fb51",
+    "requirements.txt": "1d363267b4c00627b37bf1908ab7b9a5b63c457ca62f82c4e14ebd7a3dbbf657",
+    "run_edaic_xgb.py": "a8ac8030f8029f7dc8e2be353aded81c49e922f2a34b33a5984917dc22c191b8",
+    "run_edaic_xgb.slurm": "1d56e828a1ddafd0897cfa2b6666d589edddda4cd1b7fa211449c95600b0804b",
+    "test_runner.py": "1c8c618d809f40e3128500d6bfabba786ce437af394c968950c8e51e2e0b0c4b"
+  },
+  "remote_metadata_validation": "passed; mn5_preflight.log",
+  "slurm_test_only": "passed; no job submitted"
+}
