@@ -11,3 +11,6 @@ __pycache__/
 SHA256SUMS
 SOURCE_COMMIT
 deployment_status.json
+SOURCE_COMMIT_4GPU
+SHA256SUMS_4GPU
+migration_*/

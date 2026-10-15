@@ -16,3 +16,20 @@ Submission (after verified remote deployment/environment): sbatch run_anxiety_ag
 Pinned direct versions match depression staging environment; supporting dependency versions
 are recorded at runtime. env_site isolates pinned core packages; shared dependencies read only.
 Job completion must be verified with sacct and all expected artifacts; not merely empty squeue.
+
+
+## Four-GPU migration (2026-10-15)
+
+User authorized only anxiety job47287479 migration; EDAIC job must not be touched.
+New single-node/single-job wrapper run_anxiety_four_gpu.slurm requests four GPUs and
+four tasks at20CPUs/task. Controller launches at most four exclusive one-GPU srun steps.
+Each config still uses original scientific LOPO/objective/feature selection code and40trials.
+Completed config outputs are preserved and skipped after artifact/coverage checks.
+Original outputs must be snapshotted after predecessor job is cancelled before launch.
+Completed Optuna CSV histories are imported into per-config SQLite studies; incomplete
+trial restarts. Original in-memory unseeded sampler state is unavailable, so subsequent
+sampling is not guaranteed to match uninterrupted execution. Imported parameters and
+objective values are exact; original timestamps remain in migration snapshot.
+Controller alone updates shared summary; workers write distinct config directories.
+Existing MN5 env_site/PYTHONPATH reused unchanged; no new environment or installations.
+Source and metadata integrity are recorded in SHA256SUMS_4GPU/SOURCE_COMMIT_4GPU.
