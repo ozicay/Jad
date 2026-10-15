@@ -5,7 +5,7 @@
 #SBATCH --partition=acc
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=20
+#SBATCH --cpus-per-task=80
 #SBATCH --gres=gpu:4
 #SBATCH --time=3-00:00:00
 #SBATCH --output=/gpfs/projects/etur92/ozu150751/jad/edaic_xgb/logs/slurm_%j.out
