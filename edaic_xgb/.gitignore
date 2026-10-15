@@ -1,5 +1,6 @@
 metadata/
 env_site/
+env_site_incomplete/
 logs/
 docs/
 mfcc_*/

@@ -16,7 +16,7 @@ Or submit from this computer with one command:
 ssh alogin2.bsc.es 'sbatch /gpfs/projects/etur92/ozu150751/jad/edaic_xgb/run_edaic_xgb.slurm'
 ```
 
-The job requests one GPU, 20 CPUs, and the verified 72-hour `acc_ehpc`
+The job requests four H100 GPUs, 20 CPUs, and the verified 72-hour `acc_ehpc`
 limit. One Python process executes these twelve experiments sequentially:
 
 ```
@@ -25,9 +25,13 @@ egemaps_top5 → egemaps_top10 → egemaps_top15 → egemaps_all
 is09_top5 → is09_top10 → is09_top15 → is09_all
 ```
 
-Final-stage LOPO uses five workers as in the reference. Optuna trials and
-their LOPO folds run sequentially as in the reference. There is no job array,
-cross-experiment concurrency or random/validation split.
+Trial and final LOPO use four workers, one pinned to each of cuda:0–cuda:3.
+Optuna trials and experiments remain sequential. Only independent patient
+folds within the same LOPO stage run concurrently. The first finished fold
+on each GPU prints its verified XGBoost device and the cumulative GPU count;
+each completed stage prints the total GPUs actually used. Slurm startup
+checks and prints four H100 names. No Accelerate or new dependencies are used.
+There is no job array, cross-experiment concurrency or random/validation split.
 
 ## Data and target
 
@@ -71,7 +75,9 @@ The default Optuna sampler is used with no newly imposed seed or pruning.
 For Top-K, the trial objective was extracted from the reference. Its only
 adaptations are explicit data arguments, experiment-local temporary paths,
 progress printing, configurable K (5/10/15), and a full-feature-only ALL
-branch. AST validation compares it with that documented transformation.
+branch. The four-GPU objective preserves the numerical operations and trial
+parameter expressions, distributing independent folds while keeping their
+aggregation order fixed; synthetic tests compare it with the serial reference. AST validation compares it with that documented transformation.
 
 Every Top-K trial performs full-feature LOPO, averages
 `model.feature_importances_` across all held-out patients, ranks descending,
@@ -125,7 +131,11 @@ trials, verifies completed artifacts and skips completed experiments.
 An unfinished final stage is recomputed using its existing best parameters;
 no extra Optuna search is performed. Interrupted trials are recorded as
 failed; a replacement trial uses the remaining complete-trial budget.
-Changed source/config/data identities are rejected, and an exclusive lock
+The one-GPU source was archived and its study backed up before migration.
+The batch script permits an explicit scheduling-only migration from the old
+source SHA256 a8ac8030f8029f7dc8e2be353aded81c49e922f2a34b33a5984917dc22c191b8;
+metadata/reference identities must still match. Completed trials are reused.
+Other changed source/config/data identities are rejected, and an exclusive lock
 prevents simultaneous runners in this directory. Do not edit production
 source in the middle of a run.
 
@@ -134,9 +144,12 @@ source in the middle of a run.
 `python run_edaic_xgb.py --validate-only` checks source and real metadata
 without training. Run this under the Slurm script's module/PYTHONPATH setup
 on MN5. Dependency versions and their actual module paths are recorded.
-`env_site/` contains a private copy of the existing compatible core packages;
-remaining installed dependencies are read from the established MN5
-`py312_job_site` and user site. No shared environment is modified.
+`env_site` links to the existing compatible core packages in
+`../anxiety_age_pool/env_site`; this reuses package code, not that experiment's
+data/configuration. Remaining dependencies are read from the established MN5
+`py312_job_site` and user site. Bytecode writes are disabled by the job script;
+no shared environment is modified. An abandoned, incomplete package copy is
+preserved separately as `env_site_incomplete` and is never on PYTHONPATH.
 
 `python -B edaic_xgb/test_runner.py` locally exercises real Optuna studies
 using synthetic models: reference-objective equivalence, all twelve configs,
