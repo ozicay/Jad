@@ -16,7 +16,8 @@ import os
 from pathlib import Path
 import re
 import sys
-from threading import Lock
+from threading import Lock, local
+from queue import Queue
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
@@ -29,7 +30,10 @@ from sklearn.metrics import mean_squared_error
 
 ROOT = Path(__file__).resolve().parent
 CUDA_DEVICE = 'cuda:0'
-MAX_WORKERS = 5
+MAX_WORKERS = 4
+GPU_DEVICES = tuple(f"cuda:{i}" for i in range(4))
+_GPU_LOCAL = local()
+RESUME_FROM_SHA = None
 TARGET = 'depresyon_skoru'
 CONFIGS = {
     'mfcc': (ROOT / 'metadata/metadata_with_mfcc.csv', 'features'),
@@ -101,6 +105,10 @@ def verify_reference():
     assert len(ORDER) == 12 and [k for _, k in ORDER[:4]] == [5, 10, 15, None]
     reference_trials = next(n for n in ast.walk(source) if isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute) and n.func.attr == 'optimize')
     assert TRIALS == ast.literal_eval(next(k.value for k in reference_trials.keywords if k.arg == 'n_trials'))
+    source_objective = next(n for n in source.body if isinstance(n, ast.FunctionDef) and n.name == 'objective')
+    source_params = next(n.value for n in source_objective.body if isinstance(n, ast.Assign) and any(isinstance(t, ast.Name) and t.id == 'params' for t in n.targets))
+    new_params = next(n for n in current.body if isinstance(n, ast.FunctionDef) and n.name == 'trial_parameters').body[0].value
+    assert ast.dump(source_params) == ast.dump(new_params), 'Trial parameter expressions changed'
     print('Reference verification passed: parser, ID extraction, complete adapted Optuna objective, search ranges and 20 trials.')
 
 
@@ -176,10 +184,19 @@ def metrics(results, setting):
                 patient_level_mae=np.mean(np.abs(y_true - y_pred)))
 
 
+def gpu_executor():
+    available = Queue()
+    for device in GPU_DEVICES:
+        available.put(device)
+    def initialize():
+        _GPU_LOCAL.device = available.get_nowait()
+    return concurrent.futures.ThreadPoolExecutor(max_workers=len(GPU_DEVICES), initializer=initialize)
+
+
 def run_lopo(X_all, y_all, groups_all, unique_pids, scores, out, stage, params, save_best=False):
     lock = Lock()
     best = {'rmse': float('inf'), 'model': None, 'result': None}
-    reported_device = []
+    reported_device = set()
 
     def fold(target_patient):
         target_mask = groups_all == target_patient
@@ -189,7 +206,8 @@ def run_lopo(X_all, y_all, groups_all, unique_pids, scores, out, stage, params, 
         X_target_test = X_all[target_mask]
         y_target_test = y_all[target_mask]
         true_score = scores[target_patient]
-        model = XGBRegressor(**params)
+        device = _GPU_LOCAL.device
+        model = XGBRegressor(**dict(params, device=device))
         model.fit(X_train, y_train)
         target_predictions = model.predict(X_target_test)
         predicted_median = np.median(target_predictions)
@@ -200,10 +218,13 @@ def run_lopo(X_all, y_all, groups_all, unique_pids, scores, out, stage, params, 
                       training_samples=len(X_train), test_samples=len(X_target_test),
                       features_count=X_train.shape[1], status='success')
         with lock:
-            if not reported_device:
+            if device not in reported_device:
                 actual_device = json.loads(model.get_booster().save_config())['learner']['generic_param']['device']
-                reported_device.append(actual_device)
-                print(f'{out.name} {stage}: actual XGBoost device={actual_device}', flush=True)
+                if actual_device != device:
+                    raise RuntimeError(f'GPU assignment failed: requested {device}, model used {actual_device}')
+                reported_device.add(device)
+                print(f'{out.name} {stage}: worker={device}; actual XGBoost device={actual_device}', flush=True)
+                print(f'GPU_USAGE verified_training_devices={len(reported_device)}/{len(GPU_DEVICES)} devices={sorted(reported_device)}', flush=True)
             if save_best and (rmse < best['rmse'] or
                               (rmse == best['rmse'] and target_patient < best['result']['patient_id'])):
                 best.update(rmse=rmse, model=model, result=result.copy())
@@ -212,15 +233,16 @@ def run_lopo(X_all, y_all, groups_all, unique_pids, scores, out, stage, params, 
         return result, feature_importance.copy(), target_predictions.copy()
 
     results, importances, predictions = {}, {}, {}
-    # Five active folds as in xgb.py; only the current best candidate is retained.
+    # Four active folds, one per assigned GPU; retain only the current best model.
     # Tasks construct their masks on demand rather than storing every training matrix.
-    with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+    with gpu_executor() as executor:
         futures = {executor.submit(fold, pid): pid for pid in unique_pids}
         for future in concurrent.futures.as_completed(futures):
             result, importance, segment_predictions = future.result()
             pid = result['patient_id']
             results[pid], importances[pid], predictions[pid] = result, importance, segment_predictions
     assert set(results) == set(unique_pids)
+    print(f'{out.name} {stage}: GPUs actually used={len(reported_device)}; devices={sorted(reported_device)}', flush=True)
     result_df = pd.DataFrame([results[pid] for pid in unique_pids])
     result_df.to_csv(out / f'{stage}_patient_results.csv', index=False)
     # Retain every segment prediction, in original per-patient segment order.
@@ -360,6 +382,29 @@ def reference_objective(trial, X_all, y_all, groups_all, unique_pids, patient_in
 
     return mean_rmse
 
+def trial_parameters(trial):
+    return {'objective': 'reg:squarederror', 'learning_rate': trial.suggest_float('learning_rate', 0.001, 0.1, log=True), 'max_depth': trial.suggest_int('max_depth', 4, 14), 'n_estimators': trial.suggest_int('n_estimators', 100, 500), 'tree_method': 'hist', 'device': 'cuda', 'random_state': 42}
+
+
+def parallel_objective(trial, data, top_k, output):
+    X_all, y_all, groups_all, unique_pids, scores = data
+    params = trial_parameters(trial)
+    full, importance, _ = run_lopo(X_all, y_all, groups_all, unique_pids, scores,
+                                   output, 'full_feature', params)
+    if top_k is None:
+        return np.mean(full['rmse'].values)
+    path = output / 'OPTUNA_TMP_IMPORTANCE.csv'
+    importance.to_csv(path, index=False)
+    imp_df = pd.read_csv(path)
+    feat_cols = [c for c in imp_df.columns if c.startswith('feat_')]
+    avg_imp = imp_df[feat_cols].mean().sort_values(ascending=False)
+    top_features = avg_imp.head(top_k).index.tolist()
+    selected_indices = sorted([int(f.split('_')[1]) for f in top_features])
+    predictions, _, _ = run_lopo(X_all[:, selected_indices], y_all, groups_all,
+                                  unique_pids, scores, output, f'top{top_k}', params)
+    return np.mean(predictions['rmse'].values)
+
+
 def tune(data, top_k, out):
     X_all, y_all, groups_all, unique_pids, scores = data
     patient_info = {pid: {TARGET: score} for pid, score in scores.items()}
@@ -374,8 +419,8 @@ def tune(data, top_k, out):
     def objective(trial):
         trial_dir = out / 'optuna_trials' / f'trial_{trial.number:03d}'
         trial_dir.mkdir(exist_ok=True, parents=True)
-        print(f'{out.name}: Optuna trial {trial.number}; top_k={top_k}', flush=True)
-        return reference_objective(trial, X_all, y_all, groups_all, unique_pids, patient_info, top_k, trial_dir)
+        print(f'{out.name}: completed-trial budget {len(study.get_trials(states=(optuna.trial.TrialState.COMPLETE,))) + 1}/{TRIALS}; study_trial={trial.number}; top_k={top_k}', flush=True)
+        return parallel_objective(trial, data, top_k, trial_dir)
     def record(study, trial):
         study.trials_dataframe().to_csv(out / 'optuna_trials.csv', index=False)
     if completed < TRIALS:
@@ -401,7 +446,11 @@ def experiment(feature, top_k, data):
                   dataset_sha256=sha256(csv_path), runner_sha256=sha256(__file__))
     config_path = out / 'experiment_config.json'
     if config_path.exists() and json.loads(config_path.read_text()) != config:
-        raise ValueError(f'{name}: configuration or source differs from existing attempt')
+        old = json.loads(config_path.read_text())
+        expected = dict(old, runner_sha256=config['runner_sha256'])
+        if not RESUME_FROM_SHA or old['runner_sha256'] != RESUME_FROM_SHA or expected != config:
+            raise ValueError(f'{name}: configuration or source differs from existing attempt')
+        (out / f'config_before_gpu_migration_{RESUME_FROM_SHA[:12]}.json').write_text(config_path.read_text())
     config_path.write_text(json.dumps(config, indent=2))
     complete = out / 'experiment_complete.json'
     if complete.exists():
@@ -487,7 +536,10 @@ class Tee:
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--validate-only', action='store_true')
+    parser.add_argument('--resume-from-sha256', help='Explicitly authorize scheduling-only source migration from this SHA256')
     args = parser.parse_args()
+    global RESUME_FROM_SHA
+    RESUME_FROM_SHA = args.resume_from_sha256
     datasets, common = load_and_validate()
     if args.validate_only:
         print('Validation complete. No training or experiment outputs created.')
@@ -504,7 +556,12 @@ def main():
     if manifest_path.exists():
         previous = json.loads(manifest_path.read_text())
         if previous.get('identity') != identity:
-            raise ValueError('Existing run source/data identity differs; refusing to mix attempts')
+            old_identity = previous.get('identity', {})
+            expected = dict(old_identity, script_sha256=identity['script_sha256'])
+            if not RESUME_FROM_SHA or old_identity.get('script_sha256') != RESUME_FROM_SHA or expected != identity:
+                raise ValueError('Existing run source/data identity differs; refusing to mix attempts')
+            (ROOT / 'logs').mkdir(exist_ok=True)
+            (ROOT / 'logs' / f'run_manifest_before_gpu_migration_{RESUME_FROM_SHA[:12]}.json').write_text(manifest_path.read_text())
     with (ROOT / 'sequential_run.log').open('a') as log:
         stdout, stderr = sys.stdout, sys.stderr
         sys.stdout, sys.stderr = Tee(stdout, log), Tee(stderr, log)
@@ -518,7 +575,7 @@ def main():
                             parent_commit=(ROOT / 'SOURCE_PARENT_COMMIT').read_text().strip(),
                             source_status='SOURCE_COMMIT when deployed from published source; SHA256 identifies exact files',
                             script_sha256=sha256(__file__), reference_sha256=sha256(REFERENCE), identity=identity,
-                            parameters=PARAMS, python=sys.version, xgboost=xgboost.__version__,
+                            parameters=PARAMS, gpu_devices=GPU_DEVICES, resume_from_sha256=RESUME_FROM_SHA, python=sys.version, xgboost=xgboost.__version__,
                             numpy=np.__version__, pandas=pd.__version__, optuna=optuna.__version__,
                             slurm_job_id=os.environ.get('SLURM_JOB_ID'),
                             optuna_trials=TRIALS, optuna_objective='mean per-patient fold RMSE',
@@ -532,7 +589,7 @@ def main():
             journal(f'EDAIC Optuna sıralı koşusu başladı. 12 config; hedef={TARGET}; '
                     f'ortak hasta sayısı={len(common)}. LOPO, feature_importances_, '
                     f'segment tahminlerinin medyanı ve hasta düzeyinde RMSE/MAE. '
-                    f'Kaynak commit yok; SHA256 ve veri/config kimlikleri: {ROOT / "run_manifest.json"}. '
+                    f'Kaynak commit={manifest["source_commit"]}; SHA256 ve veri/config kimlikleri: {ROOT / "run_manifest.json"}. '
                     f'Çıktı kökü={ROOT}; log=sequential_run.log; Slurm job={os.environ.get("SLURM_JOB_ID", "yok")}.')
             summary = []
             for feature, top_k in ORDER:

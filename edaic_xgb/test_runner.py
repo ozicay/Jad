@@ -9,9 +9,11 @@ import importlib.util
 import io
 import json
 import os
+import sys
 from pathlib import Path
 import tempfile
 import weakref
+from threading import Barrier
 
 import joblib
 import numpy as np
@@ -32,7 +34,7 @@ class SyntheticModel:
     def __init__(self, **params):
         self.params = params
         assert params['objective'] == 'reg:squarederror'
-        assert params['device'] == 'cuda' and params['random_state'] == 42
+        assert params['device'].startswith('cuda') and params['random_state'] == 42
         type(self).living.add(self)
         type(self).max_living = max(type(self).max_living, len(type(self).living))
 
@@ -56,11 +58,18 @@ class SyntheticModel:
         return self
 
     def save_config(self):
-        return json.dumps({'learner': {'generic_param': {'device': 'synthetic'}}})
+        return json.dumps({'learner': {'generic_param': {'device': self.params['device']}}})
 
 
 def main():
     m.verify_reference()
+    barrier = Barrier(4)
+    def gpu_probe(_):
+        barrier.wait(timeout=10)
+        return m._GPU_LOCAL.device
+    with m.gpu_executor() as executor:
+        assert set(executor.map(gpu_probe, range(4))) == {'cuda:0', 'cuda:1', 'cuda:2', 'cuda:3'}
+    print('PASS: four concurrent workers assigned four distinct GPUs.')
     real_collect = gc.collect
     gc.collect = lambda: None
     m.XGBRegressor = SyntheticModel
@@ -102,6 +111,11 @@ def main():
             finally:
                 os.chdir(previous)
             assert expected == actual
+            parallel_output = m.ROOT / 'parallel_equivalence'
+            parallel_output.mkdir()
+            parallel_value = m.parallel_objective(optuna.trial.FixedTrial(fixed), data['is09'], 15, parallel_output)
+            assert parallel_value == expected
+            print('PASS: parallel four-GPU objective equals original serial objective on synthetic data.')
             print('PASS: unmodified reference Top-15 objective equals adapted objective.')
             SyntheticModel.fits.clear()
             m.main()
@@ -147,6 +161,25 @@ def main():
             (out / 'experiment_complete.json').unlink()
             m.experiment('mfcc', 5, data['mfcc'])
             assert len(SyntheticModel.fits) == before + 6
+            # An explicitly authorized scheduling-only source migration keeps completed trials.
+            old_hash = 'b' * 64
+            manifest_path = m.ROOT / 'run_manifest.json'
+            manifest = json.loads(manifest_path.read_text())
+            manifest['identity']['script_sha256'] = old_hash
+            manifest['script_sha256'] = old_hash
+            manifest_path.write_text(json.dumps(manifest))
+            config_path = out / 'experiment_config.json'
+            config = json.loads(config_path.read_text())
+            config['runner_sha256'] = old_hash
+            config_path.write_text(json.dumps(config))
+            saved_argv = sys.argv
+            sys.argv = [saved_argv[0], '--resume-from-sha256', old_hash]
+            try:
+                m.main()
+            finally:
+                sys.argv = saved_argv
+            assert len(SyntheticModel.fits) == before + 6
+            assert (out / f'config_before_gpu_migration_{old_hash[:12]}.json').exists()
             # Population mismatch must fail before any fit.
             path, col = m.CONFIGS['is09']
             df = pd.read_csv(path)
