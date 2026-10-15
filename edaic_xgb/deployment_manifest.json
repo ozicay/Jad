@@ -21,8 +21,8 @@
   "slurm_job_id": null,
   "training_status": "not started; earlier user instruction reserves starting to user, pending clarification",
   "files_sha256": {
-    ".gitignore": "307397525e9da20a6b1534d0e5dcafa09c7e72c1541cfdd7bc347f7afa148b88",
-    "README.md": "ba2e15c0712db12bdec3c43dfd4cd3269eddc957f8688ca81c6041caec8af7af",
+    ".gitignore": "9e1a41cbc41915237786a27c217ffee9a0dea68fbfba434f2771fabe63460a33",
+    "README.md": "1a6f99f6953dd00c93a50549a59d0fb44741cdd84edabbd9ae5e7e34a3c0cb12",
     "SOURCE_PARENT_COMMIT": "9aa32d8e89737b2a6f98fd3bd4438b74943b9e6ddb84fcf67ec9944036df8d95",
     "metadata/metadata_with_egemapsv0b1.csv": "472727fa6f2b82631ae6987035e8591402930f12419b96f950e0efa2d5ffda02",
     "metadata/metadata_with_is09.csv": "48972924d3b5527266c46362b8b37095485600e0e1befdce0a1ec71ab7ffc6a5",
@@ -31,9 +31,10 @@
     "reference/optuna_xgb_is09_top15.py": "e78e97f99278321b3d12035b638e874f2088f8cb5b828a08af7313b188e4fb51",
     "requirements.txt": "1d363267b4c00627b37bf1908ab7b9a5b63c457ca62f82c4e14ebd7a3dbbf657",
     "run_edaic_xgb.py": "a8ac8030f8029f7dc8e2be353aded81c49e922f2a34b33a5984917dc22c191b8",
-    "run_edaic_xgb.slurm": "1d56e828a1ddafd0897cfa2b6666d589edddda4cd1b7fa211449c95600b0804b",
+    "run_edaic_xgb.slurm": "c2b1c44dfff94f2d2a0dc0f719bb8ed6656b62f7828e46275c5a3351a42de9b1",
     "test_runner.py": "1c8c618d809f40e3128500d6bfabba786ce437af394c968950c8e51e2e0b0c4b"
   },
   "remote_metadata_validation": "passed; mn5_preflight.log",
-  "slurm_test_only": "passed; no job submitted"
+  "slurm_test_only": "passed; no job submitted",
+  "environment": "env_site symlink to verified existing compatible core packages; shared environment unchanged"
 }

@@ -134,9 +134,12 @@ source in the middle of a run.
 `python run_edaic_xgb.py --validate-only` checks source and real metadata
 without training. Run this under the Slurm script's module/PYTHONPATH setup
 on MN5. Dependency versions and their actual module paths are recorded.
-`env_site/` contains a private copy of the existing compatible core packages;
-remaining installed dependencies are read from the established MN5
-`py312_job_site` and user site. No shared environment is modified.
+`env_site` links to the existing compatible core packages in
+`../anxiety_age_pool/env_site`; this reuses package code, not that experiment's
+data/configuration. Remaining dependencies are read from the established MN5
+`py312_job_site` and user site. Bytecode writes are disabled by the job script;
+no shared environment is modified. An abandoned, incomplete package copy is
+preserved separately as `env_site_incomplete` and is never on PYTHONPATH.
 
 `python -B edaic_xgb/test_runner.py` locally exercises real Optuna studies
 using synthetic models: reference-objective equivalence, all twelve configs,
