@@ -1,0 +1,17 @@
+metadata/
+logs/
+docs/
+mfcc_*/
+egemaps_*/
+is09_*/
+__pycache__/
+*.csv
+*.sqlite3*
+*.npz
+*.pkl
+*.log
+.run.lock
+run_manifest.json
+selection_manifest.json
+SOURCE_COMMIT
+deployment_status.json
