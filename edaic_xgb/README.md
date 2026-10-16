@@ -16,7 +16,7 @@ Or submit from this computer with one command:
 ssh alogin2.bsc.es 'sbatch /gpfs/projects/etur92/ozu150751/jad/edaic_xgb/run_edaic_xgb.slurm'
 ```
 
-The job requests four H100 GPUs, 20 CPUs, and the verified 72-hour `acc_ehpc`
+The job requests four H100 GPUs, 80 CPUs, and the verified 72-hour `acc_ehpc`
 limit. One Python process executes these twelve experiments sequentially:
 
 ```
