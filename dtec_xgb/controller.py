@@ -15,7 +15,7 @@ from data import (CONFIGURATIONS, DEFAULT_DATA, ROOT, REFERENCE_SHA256,
 def launch_command(name, data_dir, selection_dir, run_dir, threads):
     # Same config-level srun isolation used by anxiety_gpu_controller.launch().
     return ['srun', '--exclusive', '--exact', '--nodes=1', '--ntasks=1',
-            f'--cpus-per-task={threads}', '--mem=40G', '--gpus-per-task=1', '--gpu-bind=single:1',
+            f'--cpus-per-task={threads}', '--gpus-per-task=1', '--gpu-bind=single:1',
             sys.executable, '-u', str(ROOT / 'worker.py'), '--config', name,
             '--data-dir', str(data_dir), '--selection-dir', str(selection_dir),
             '--run-dir', str(run_dir), '--threads', str(threads)]

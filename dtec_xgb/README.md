@@ -77,8 +77,9 @@ Her aile için Top-5/10/15/All: toplam 12 bağımsız Optuna study.
 
 ## GPU scheduler ve çıktılar
 
-Tek node, 4 GPU, 4 task × 20 CPU, toplam 160 GiB RAM. Her konfigürasyon
-`srun --exclusive --exact --ntasks=1 --cpus-per-task=20 --mem=40G
+Tek node, 4 GPU, 4 task × 20 CPU. RAM, MN5 politikası gereği CPU talebinden
+otomatik atanır; açık bellek parametresi kullanılmaz. Her konfigürasyon
+`srun --exclusive --exact --ntasks=1 --cpus-per-task=20
 --gpus-per-task=1 --gpu-bind=single:1` ile çalışır. En fazla dört worker aktiftir;
 bitiren worker'ın yerine sıradaki konfigürasyon başlar. Slurm her worker'a
 tek CUDA_VISIBLE_DEVICES verir, XGBoost o process içinde `cuda:0` kullanır.
