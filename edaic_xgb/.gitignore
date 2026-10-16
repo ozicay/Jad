@@ -1,0 +1,17 @@
+metadata/
+env_site/
+env_site_incomplete/
+logs/
+docs/
+mfcc_*/
+egemaps_*/
+is09_*/
+*.csv
+*.sqlite3*
+*.npz
+*.pkl
+*.log
+run_manifest.json
+deployment_status.json
+.run.lock
+SOURCE_COMMIT
