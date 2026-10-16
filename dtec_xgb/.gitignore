@@ -1,0 +1,9 @@
+selection/
+data/
+runs/
+logs/
+validation/
+__pycache__/
+SOURCE_COMMIT
+SHA256SUMS
+deployment_status.json
