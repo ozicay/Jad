@@ -1,0 +1,326 @@
+{
+  "mfcc_top5": {
+    "params": {
+      "learning_rate": 0.0026604736053407836,
+      "max_depth": 9,
+      "n_estimators": 434
+    },
+    "best_params_sha256": "a5d8f528c050b9cb98f270bb997e067320f70901379b6dd49ee12c95bd57d497",
+    "dataset_sha256": "c860cda14f1c031f838a5ac7e6824f60c7b5ed189e7aa291aac0404ee3318ae0",
+    "gain_source_commit": "6faa52fb335170ef616dff948307e5f42d61ec03",
+    "gain_job_id": "47346482",
+    "gain_best_trial": 5,
+    "gain_best_objective": 4.752504612754855,
+    "gain_summary": {
+      "experiment_name": "mfcc_top5",
+      "feature_type": "mfcc",
+      "top_k": "5.0",
+      "num_features_used": "5",
+      "setting": "top5",
+      "num_patients": "233",
+      "patient_level_rmse": "5.784903861252859",
+      "patient_level_mae": "4.752504612754855",
+      "best_learning_rate": "0.0026604736053407836",
+      "best_max_depth": "9",
+      "best_n_estimators": "434"
+    },
+    "final_metrics_sha256": "8cef9d759fb1b05f40e5791bfb17b584eb36f1a3cd2da406b197a90b1b6fddf9"
+  },
+  "mfcc_top10": {
+    "params": {
+      "learning_rate": 0.014480010398104431,
+      "max_depth": 8,
+      "n_estimators": 209
+    },
+    "best_params_sha256": "10a0b00dfaf0a794015ec1cbc23eb8f466e1a736aefc91290f54e94956ed56cb",
+    "dataset_sha256": "c860cda14f1c031f838a5ac7e6824f60c7b5ed189e7aa291aac0404ee3318ae0",
+    "gain_source_commit": "6faa52fb335170ef616dff948307e5f42d61ec03",
+    "gain_job_id": "47346482",
+    "gain_best_trial": 11,
+    "gain_best_objective": 4.7112892216367275,
+    "gain_summary": {
+      "experiment_name": "mfcc_top10",
+      "feature_type": "mfcc",
+      "top_k": "10.0",
+      "num_features_used": "10",
+      "setting": "top10",
+      "num_patients": "233",
+      "patient_level_rmse": "5.735560113027241",
+      "patient_level_mae": "4.7112892216367275",
+      "best_learning_rate": "0.014480010398104431",
+      "best_max_depth": "8",
+      "best_n_estimators": "209"
+    },
+    "final_metrics_sha256": "36570e6a1922b709e61bec378c40ccb83e98f33c8f0c7a6c7a7a9ebefda26666"
+  },
+  "mfcc_top15": {
+    "params": {
+      "learning_rate": 0.003353883527114373,
+      "max_depth": 6,
+      "n_estimators": 232
+    },
+    "best_params_sha256": "a90701f76ee37d9e38b27354bd2701244522f0072e13076db8cd4d58e58c7304",
+    "dataset_sha256": "c860cda14f1c031f838a5ac7e6824f60c7b5ed189e7aa291aac0404ee3318ae0",
+    "gain_source_commit": "6faa52fb335170ef616dff948307e5f42d61ec03",
+    "gain_job_id": "47346482",
+    "gain_best_trial": 12,
+    "gain_best_objective": 4.740122412407347,
+    "gain_summary": {
+      "experiment_name": "mfcc_top15",
+      "feature_type": "mfcc",
+      "top_k": "15.0",
+      "num_features_used": "15",
+      "setting": "top15",
+      "num_patients": "233",
+      "patient_level_rmse": "5.6644807777436625",
+      "patient_level_mae": "4.740122412407347",
+      "best_learning_rate": "0.003353883527114373",
+      "best_max_depth": "6",
+      "best_n_estimators": "232"
+    },
+    "final_metrics_sha256": "e5aabe205dea6753554e87d23bf2ba905d5d649b0eeb1ddac7157155efc9d885"
+  },
+  "mfcc_all": {
+    "params": {
+      "learning_rate": 0.005537092572706141,
+      "max_depth": 6,
+      "n_estimators": 209
+    },
+    "best_params_sha256": "f069080a6f4745acc3b87bc2f8a1486abaf6f161e29cbc8c4da73fadab281035",
+    "dataset_sha256": "c860cda14f1c031f838a5ac7e6824f60c7b5ed189e7aa291aac0404ee3318ae0",
+    "gain_source_commit": "6faa52fb335170ef616dff948307e5f42d61ec03",
+    "gain_job_id": "47346482",
+    "gain_best_trial": 18,
+    "gain_best_objective": 4.849406600510102,
+    "gain_summary": {
+      "experiment_name": "mfcc_all",
+      "feature_type": "mfcc",
+      "top_k": "",
+      "num_features_used": "608",
+      "setting": "all",
+      "num_patients": "233",
+      "patient_level_rmse": "5.853121585227069",
+      "patient_level_mae": "4.849406600510102",
+      "best_learning_rate": "0.005537092572706141",
+      "best_max_depth": "6",
+      "best_n_estimators": "209"
+    },
+    "final_metrics_sha256": "f98a9ceeeb5e8fced9e5be8a71d96d85c3cd04ee79c2f40d9f5680abab65e5bb"
+  },
+  "egemaps_top5": {
+    "params": {
+      "learning_rate": 0.026587155943741093,
+      "max_depth": 10,
+      "n_estimators": 183
+    },
+    "best_params_sha256": "7057058752d4d17eb2ba094c74ef4a5f995ca6ba298d86e6c41262a9bfb33f92",
+    "dataset_sha256": "472727fa6f2b82631ae6987035e8591402930f12419b96f950e0efa2d5ffda02",
+    "gain_source_commit": "6faa52fb335170ef616dff948307e5f42d61ec03",
+    "gain_job_id": "47346482",
+    "gain_best_trial": 13,
+    "gain_best_objective": 4.49346108702631,
+    "gain_summary": {
+      "experiment_name": "egemaps_top5",
+      "feature_type": "egemaps",
+      "top_k": "5.0",
+      "num_features_used": "5",
+      "setting": "top5",
+      "num_patients": "233",
+      "patient_level_rmse": "5.483953399685371",
+      "patient_level_mae": "4.49346108702631",
+      "best_learning_rate": "0.026587155943741093",
+      "best_max_depth": "10",
+      "best_n_estimators": "183"
+    },
+    "final_metrics_sha256": "2be58a29ded8e5c07b0f0a159b2f8775b69a776a0836791b85ef8fc94b3f70d5"
+  },
+  "egemaps_top10": {
+    "params": {
+      "learning_rate": 0.030987792081287404,
+      "max_depth": 9,
+      "n_estimators": 355
+    },
+    "best_params_sha256": "3cfe75513cd0aa59c28dccc4e1df45ba703210c8ce933c41949cf10ab4acb63b",
+    "dataset_sha256": "472727fa6f2b82631ae6987035e8591402930f12419b96f950e0efa2d5ffda02",
+    "gain_source_commit": "6faa52fb335170ef616dff948307e5f42d61ec03",
+    "gain_job_id": "47346482",
+    "gain_best_trial": 15,
+    "gain_best_objective": 4.6017809998835615,
+    "gain_summary": {
+      "experiment_name": "egemaps_top10",
+      "feature_type": "egemaps",
+      "top_k": "10.0",
+      "num_features_used": "10",
+      "setting": "top10",
+      "num_patients": "233",
+      "patient_level_rmse": "5.744548546262051",
+      "patient_level_mae": "4.6017809998835615",
+      "best_learning_rate": "0.030987792081287404",
+      "best_max_depth": "9",
+      "best_n_estimators": "355"
+    },
+    "final_metrics_sha256": "a0274c3179631256c7e2a6c30bdaa2d5e732b1b4f6ec4811dff0628c4e37669e"
+  },
+  "egemaps_top15": {
+    "params": {
+      "learning_rate": 0.01704311121634955,
+      "max_depth": 13,
+      "n_estimators": 112
+    },
+    "best_params_sha256": "af8c38f705b602d66198fd0258165b9fb91c8c11806a6605bd289873980fa097",
+    "dataset_sha256": "472727fa6f2b82631ae6987035e8591402930f12419b96f950e0efa2d5ffda02",
+    "gain_source_commit": "6faa52fb335170ef616dff948307e5f42d61ec03",
+    "gain_job_id": "47346482",
+    "gain_best_trial": 0,
+    "gain_best_objective": 4.6008904931882935,
+    "gain_summary": {
+      "experiment_name": "egemaps_top15",
+      "feature_type": "egemaps",
+      "top_k": "15.0",
+      "num_features_used": "15",
+      "setting": "top15",
+      "num_patients": "233",
+      "patient_level_rmse": "5.7121630737534606",
+      "patient_level_mae": "4.6008904931882935",
+      "best_learning_rate": "0.01704311121634955",
+      "best_max_depth": "13",
+      "best_n_estimators": "112"
+    },
+    "final_metrics_sha256": "a9185d52a875ea8e17ad4257156bb6cfb7bdc17a3d891271d1068a18e2376afb"
+  },
+  "egemaps_all": {
+    "params": {
+      "learning_rate": 0.023907562745512746,
+      "max_depth": 6,
+      "n_estimators": 481
+    },
+    "best_params_sha256": "110198e3db3eeb429c43b466ef605636afb170341cb8dc23d09157f4bbb3157b",
+    "dataset_sha256": "472727fa6f2b82631ae6987035e8591402930f12419b96f950e0efa2d5ffda02",
+    "gain_source_commit": "6faa52fb335170ef616dff948307e5f42d61ec03",
+    "gain_job_id": "47346482",
+    "gain_best_trial": 6,
+    "gain_best_objective": 4.793936066361456,
+    "gain_summary": {
+      "experiment_name": "egemaps_all",
+      "feature_type": "egemaps",
+      "top_k": "",
+      "num_features_used": "88",
+      "setting": "all",
+      "num_patients": "233",
+      "patient_level_rmse": "5.929150660858102",
+      "patient_level_mae": "4.793936066361456",
+      "best_learning_rate": "0.023907562745512746",
+      "best_max_depth": "6",
+      "best_n_estimators": "481"
+    },
+    "final_metrics_sha256": "7e1a3c5d447d2ec60a1c43a4565aac6e7a2efe1982526451059858866d056705"
+  },
+  "is09_top5": {
+    "params": {
+      "learning_rate": 0.011770042708296881,
+      "max_depth": 14,
+      "n_estimators": 374
+    },
+    "best_params_sha256": "c7193bf88eab7dbc7ef26943919c89cb3a08c49f41d47d9acbe8e9d774cb9611",
+    "dataset_sha256": "48972924d3b5527266c46362b8b37095485600e0e1befdce0a1ec71ab7ffc6a5",
+    "gain_source_commit": "6faa52fb335170ef616dff948307e5f42d61ec03",
+    "gain_job_id": "47346482",
+    "gain_best_trial": 18,
+    "gain_best_objective": 4.6603307580743225,
+    "gain_summary": {
+      "experiment_name": "is09_top5",
+      "feature_type": "is09",
+      "top_k": "5.0",
+      "num_features_used": "5",
+      "setting": "top5",
+      "num_patients": "233",
+      "patient_level_rmse": "5.652878365301124",
+      "patient_level_mae": "4.6603307580743225",
+      "best_learning_rate": "0.011770042708296881",
+      "best_max_depth": "14",
+      "best_n_estimators": "374"
+    },
+    "final_metrics_sha256": "dd5e4be3ce44cb6da12e0feaa800ab6e0b5ceff903571f2688314a6b0b3fe585"
+  },
+  "is09_top10": {
+    "params": {
+      "learning_rate": 0.020472761468417016,
+      "max_depth": 7,
+      "n_estimators": 498
+    },
+    "best_params_sha256": "1300ba5f46f2702b9b8c652dd39b733fbb3efccebccd5386d704caa0815817f7",
+    "dataset_sha256": "48972924d3b5527266c46362b8b37095485600e0e1befdce0a1ec71ab7ffc6a5",
+    "gain_source_commit": "6faa52fb335170ef616dff948307e5f42d61ec03",
+    "gain_job_id": "47346482",
+    "gain_best_trial": 11,
+    "gain_best_objective": 4.528364577518512,
+    "gain_summary": {
+      "experiment_name": "is09_top10",
+      "feature_type": "is09",
+      "top_k": "10.0",
+      "num_features_used": "10",
+      "setting": "top10",
+      "num_patients": "233",
+      "patient_level_rmse": "5.609386494578205",
+      "patient_level_mae": "4.528364577518512",
+      "best_learning_rate": "0.020472761468417016",
+      "best_max_depth": "7",
+      "best_n_estimators": "498"
+    },
+    "final_metrics_sha256": "61cc789f4e9719c751a89d92dc9951dd1b116bcbbf5a3b83e6ada885e77568d3"
+  },
+  "is09_top15": {
+    "params": {
+      "learning_rate": 0.01141734793218534,
+      "max_depth": 13,
+      "n_estimators": 104
+    },
+    "best_params_sha256": "a8267b93232cc124966e7e31645ceca299b83cc98d97a6bc736f403307217fbf",
+    "dataset_sha256": "48972924d3b5527266c46362b8b37095485600e0e1befdce0a1ec71ab7ffc6a5",
+    "gain_source_commit": "6faa52fb335170ef616dff948307e5f42d61ec03",
+    "gain_job_id": "47346482",
+    "gain_best_trial": 17,
+    "gain_best_objective": 4.572578153896741,
+    "gain_summary": {
+      "experiment_name": "is09_top15",
+      "feature_type": "is09",
+      "top_k": "15.0",
+      "num_features_used": "15",
+      "setting": "top15",
+      "num_patients": "233",
+      "patient_level_rmse": "5.606505383659403",
+      "patient_level_mae": "4.572578153896741",
+      "best_learning_rate": "0.01141734793218534",
+      "best_max_depth": "13",
+      "best_n_estimators": "104"
+    },
+    "final_metrics_sha256": "70a433cb8dab67f22217c0f111ce352cb5b88b0d6274fa0a4d37f633a7aa1bfb"
+  },
+  "is09_all": {
+    "params": {
+      "learning_rate": 0.001073214173627434,
+      "max_depth": 8,
+      "n_estimators": 480
+    },
+    "best_params_sha256": "ee003dda11632b2c8c895fb908223678ecd1fca349d098a0838f0efd2a38ea20",
+    "dataset_sha256": "48972924d3b5527266c46362b8b37095485600e0e1befdce0a1ec71ab7ffc6a5",
+    "gain_source_commit": "6faa52fb335170ef616dff948307e5f42d61ec03",
+    "gain_job_id": "47346482",
+    "gain_best_trial": 7,
+    "gain_best_objective": 4.837287471018124,
+    "gain_summary": {
+      "experiment_name": "is09_all",
+      "feature_type": "is09",
+      "top_k": "",
+      "num_features_used": "384",
+      "setting": "all",
+      "num_patients": "233",
+      "patient_level_rmse": "5.8043058113756905",
+      "patient_level_mae": "4.837287471018124",
+      "best_learning_rate": "0.001073214173627434",
+      "best_max_depth": "8",
+      "best_n_estimators": "480"
+    },
+    "final_metrics_sha256": "196993d05705e7e9d272953c440131db63668a6724652f1cb63104124fe343d5"
+  }
+}
