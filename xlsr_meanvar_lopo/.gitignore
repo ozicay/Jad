@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+.pytest_cache/
+models/
+outputs/
+data/
+*.wav
+*.flac
+*.joblib
+*.sqlite*
+*.parts/
+examples/synthetic/

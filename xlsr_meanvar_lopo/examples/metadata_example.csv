@@ -1,0 +1,9 @@
+file_name,patient_id,depresyon_skoru,anksiyete_skoru,label
+p001_seg01.wav,p001,12,8,example
+p001_seg02.wav,p001,12,8,example
+p002_seg01.wav,p002,20,14,example
+p002_seg02.wav,p002,20,14,example
+p003_seg01.wav,p003,7,5,example
+p003_seg02.wav,p003,7,5,example
+p004_seg01.wav,p004,16,11,example
+p004_seg02.wav,p004,16,11,example
