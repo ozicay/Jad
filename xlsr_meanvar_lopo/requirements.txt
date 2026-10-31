@@ -1,0 +1,11 @@
+# Versions exercised locally; install a suitable CPU/CUDA PyTorch wheel separately.
+numpy==1.26.4
+pandas==2.2.2
+scikit-learn==1.8.0
+scipy==1.13.1
+soundfile==0.13.1
+transformers==4.48.0
+safetensors>=0.4.3,<1
+xgboost==3.1.2
+optuna==4.8.0
+joblib==1.4.2
